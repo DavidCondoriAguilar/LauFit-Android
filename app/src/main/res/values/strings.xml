@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">GymApp</string>
+    <string name="title_activity_splash">SplashActivity</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="title_activity_splashctivity">Splashctivity</string>
+</resources>
