@@ -1,8 +1,8 @@
 package com.example.gymapp.frontend.ui.login
 
-import AppTypography
 import GymAppTheme
 import WhiteGray
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -25,7 +25,10 @@ import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.sharp.PlayArrow
 import androidx.compose.ui.graphics.Color.Companion.Red
+import androidx.compose.ui.platform.LocalContext
 import com.example.gymapp.R
+import com.example.gymapp.frontend.ui.carousel.CarouselActivity
+import com.example.gymapp.ui.theme.AppTypography
 
 class LoginActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,10 +51,13 @@ class LoginActivity : ComponentActivity() {
 
 @Composable
 fun LoginScreen(modifier: Modifier = Modifier) {
-    // States for user input
+    // Estados para la entrada de datos del usuario
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var errorMessage by remember { mutableStateOf("") }
+
+    // Referencia al contexto para redirigir al MainActivity
+    val context = LocalContext.current
 
     Box(
         modifier = modifier
@@ -65,11 +71,11 @@ fun LoginScreen(modifier: Modifier = Modifier) {
             modifier = Modifier.fillMaxSize()
         ) {
             Image(
-                painter = painterResource(id = R.drawable.logo), // Replace with your logo
+                painter = painterResource(id = R.drawable.logo), // Reemplaza con tu logo
                 contentDescription = null,
                 modifier = Modifier
-                    .size(340.dp)
-                    .padding(bottom = 32.dp)
+                    .size(380.dp)
+                    .padding(bottom = 14.dp)
             )
             Text(
                 text = "Iniciar sesión",
@@ -77,14 +83,14 @@ fun LoginScreen(modifier: Modifier = Modifier) {
                 color = Red,
                 modifier = Modifier.padding(bottom = 24.dp)
             )
-            // Email Input
+            // Input de Email
             OutlinedTextField(
                 value = email,
                 onValueChange = { email = it },
                 label = { Text("Correo electrónico") },
                 leadingIcon = {
                     Icon(
-                        imageVector = Icons.Filled.Email, // Use Material Design icon for email
+                        imageVector = Icons.Filled.Email,
                         contentDescription = null
                     )
                 },
@@ -95,14 +101,14 @@ fun LoginScreen(modifier: Modifier = Modifier) {
                     .fillMaxWidth()
                     .padding(bottom = 16.dp)
             )
-            // Password Input
+            // Input de Contraseña
             OutlinedTextField(
                 value = password,
                 onValueChange = { password = it },
                 label = { Text("Contraseña") },
                 leadingIcon = {
                     Icon(
-                        imageVector = Icons.Filled.Lock, // Use Material Design icon for lock
+                        imageVector = Icons.Filled.Lock,
                         contentDescription = null
                     )
                 },
@@ -114,7 +120,7 @@ fun LoginScreen(modifier: Modifier = Modifier) {
                     .fillMaxWidth()
                     .padding(bottom = 16.dp)
             )
-            // Error message
+            // Mostrar mensaje de error
             if (errorMessage.isNotEmpty()) {
                 Text(
                     text = errorMessage,
@@ -122,14 +128,16 @@ fun LoginScreen(modifier: Modifier = Modifier) {
                     modifier = Modifier.padding(bottom = 16.dp)
                 )
             }
-            // Login Button
+            // Botón de iniciar sesión
             Button(
                 onClick = {
                     if (email == "deivdev" && password == "deivdev") {
-                        // Handle successful login
+                        // Si las credenciales son correctas, redirige a MainActivity
                         errorMessage = ""
+                        val intent = Intent(context, CarouselActivity::class.java)
+                        context.startActivity(intent)
                     } else {
-                        // Handle failed login
+                        // Credenciales incorrectas
                         errorMessage = "Credenciales incorrectas"
                     }
                 },
@@ -137,7 +145,7 @@ fun LoginScreen(modifier: Modifier = Modifier) {
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Icon(
-                    imageVector = Icons.Sharp.PlayArrow, // Use Material Design icon for login
+                    imageVector = Icons.Sharp.PlayArrow,
                     contentDescription = null,
                     modifier = Modifier.padding(end = 8.dp)
                 )

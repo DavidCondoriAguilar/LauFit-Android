@@ -12,8 +12,26 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GymApp"
         tools:targetApi="31">
-
-        <!-- SplashActivity como actividad de inicio -->
+        <activity
+            android:name=".frontend.ui.pages.FunctionalActivity"
+            android:exported="false"
+            android:label="@string/title_activity_functional"
+            android:theme="@style/Theme.GymApp" />
+        <activity
+            android:name=".frontend.ui.pages.NutricionActivity"
+            android:exported="false"
+            android:label="@string/title_activity_nutricion"
+            android:theme="@style/Theme.GymApp" />
+        <activity
+            android:name=".frontend.ui.pages.TrainersActivity"
+            android:exported="false"
+            android:label="@string/title_activity_trainers"
+            android:theme="@style/Theme.GymApp" />
+        <activity
+            android:name=".frontend.ui.carousel.CarouselActivity"
+            android:exported="false"
+            android:label="@string/title_activity_carousel"
+            android:theme="@style/Theme.GymApp" /> <!-- SplashActivity como actividad de inicio -->
         <activity
             android:name=".frontend.ui.splash.SplashActivity"
             android:exported="true"
@@ -21,23 +39,20 @@
             android:theme="@style/Theme.GymApp">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <!-- Otras actividades -->
+        </activity> <!-- Otras actividades -->
         <activity
             android:name=".frontend.ui.login.LoginActivity"
             android:exported="true"
             android:label="@string/title_activity_login"
             android:theme="@style/Theme.GymApp" />
-
         <activity
             android:name=".frontend.ui.home.HomeActivity"
             android:exported="true"
             android:label="@string/title_activity_home"
             android:theme="@style/Theme.GymApp" />
-
     </application>
 
 </manifest>
